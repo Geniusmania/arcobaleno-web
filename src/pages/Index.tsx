@@ -1,5 +1,5 @@
 
-import { ArrowRight, Battery, Power, Tool, Truck } from "lucide-react";
+import { ArrowRight, Battery, Power, Wrench, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
@@ -16,7 +16,7 @@ const Index = () => {
       description: "Reliable power generation and distribution systems",
     },
     {
-      icon: Tool,
+      icon: Wrench,
       title: "Maintenance",
       description: "Professional maintenance and repair services",
     },
