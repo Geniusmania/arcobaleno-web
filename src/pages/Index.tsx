@@ -9,21 +9,25 @@ const Index = () => {
       icon: Battery,
       title: "Industrial Batteries",
       description: "High-performance batteries for industrial applications",
+      link: "/products",
     },
     {
       icon: Power,
       title: "Power Solutions",
       description: "Reliable power generation and distribution systems",
+      link: "/services",
     },
     {
       icon: Wrench,
       title: "Maintenance",
       description: "Professional maintenance and repair services",
+      link: "/services",
     },
     {
       icon: Truck,
       title: "Supply Chain",
       description: "Efficient logistics and supply chain solutions",
+      link: "/services",
     },
   ];
 
@@ -104,10 +108,13 @@ const Index = () => {
                 <p className="text-steel mb-4">{feature.description}</p>
                 <Button
                   variant="ghost"
-                  className="text-navy hover:text-gold transition-colors group"
+                  className="text-navy hover:text-gold transition-colors group flex items-center"
+                  asChild
                 >
-                  Learn More{" "}
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <a href={feature.link}>
+                    Learn More{" "}
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </a>
                 </Button>
               </motion.div>
             ))}
