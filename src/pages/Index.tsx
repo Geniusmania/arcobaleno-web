@@ -2,6 +2,7 @@
 import { ArrowRight, Battery, Power, Wrench, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const features = [
@@ -64,15 +65,17 @@ const Index = () => {
               <Button
                 size="lg"
                 className="bg-gold hover:bg-gold/90 text-navy font-semibold"
+                asChild
               >
-                Explore Solutions
+                <Link to="/products">Explore Solutions</Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-white text-white hover:bg-white/10"
+                asChild
               >
-                Contact Us
+                <Link to="/contact">Contact Us</Link>
               </Button>
             </motion.div>
           </div>
@@ -111,10 +114,10 @@ const Index = () => {
                   className="text-navy hover:text-gold transition-colors group flex items-center"
                   asChild
                 >
-                  <a href={feature.link}>
+                  <Link to={feature.link}>
                     Learn More{" "}
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
+                  </Link>
                 </Button>
               </motion.div>
             ))}

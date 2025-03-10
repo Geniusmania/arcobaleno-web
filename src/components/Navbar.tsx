@@ -1,11 +1,12 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -14,6 +15,13 @@ const Navbar = () => {
     { name: 'Services', path: '/services' },
     { name: 'Contact', path: '/contact' },
   ];
+
+  // Function to check if a nav item is active
+  const isActive = (path: string) => {
+    if (path === '/' && location.pathname === '/') return true;
+    if (path !== '/' && location.pathname.startsWith(path)) return true;
+    return false;
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b">
@@ -32,12 +40,21 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className="text-steel hover:text-navy transition-colors px-3 py-2 text-sm font-medium"
+                className={`relative px-3 py-2 text-sm font-medium transition-colors ${
+                  isActive(item.path) 
+                    ? 'text-navy font-semibold' 
+                    : 'text-steel hover:text-navy'
+                }`}
               >
                 {item.name}
+                {isActive(item.path) && (
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gold"></span>
+                )}
               </Link>
             ))}
-            <Button className="bg-navy hover:bg-navy/90">Contact Us</Button>
+            <Button className="bg-gold hover:bg-gold/90 text-navy font-semibold" asChild>
+              <Link to="/contact">Contact Us</Link>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -62,14 +79,18 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className="block px-3 py-2 text-base font-medium text-steel hover:text-navy transition-colors"
+                className={`block px-3 py-2 text-base font-medium ${
+                  isActive(item.path) 
+                    ? 'text-navy font-semibold border-l-4 border-gold pl-2' 
+                    : 'text-steel hover:text-navy'
+                }`}
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <Button className="w-full bg-navy hover:bg-navy/90 mt-4">
-              Contact Us
+            <Button className="w-full bg-gold hover:bg-gold/90 text-navy font-semibold mt-4" asChild>
+              <Link to="/contact">Contact Us</Link>
             </Button>
           </div>
         </div>
