@@ -33,15 +33,10 @@ const About = () => {
             >
               <h2 className="text-3xl font-bold text-navy mb-6">Our Story</h2>
               <p className="text-steel mb-6">
-                Founded in 2002, Arcobaleno Decov has grown from a small supplier of industrial parts to a comprehensive 
-                solutions provider for businesses across multiple industries. Our journey has been marked by a commitment 
-                to quality, innovation, and customer satisfaction.
+              Arcobeleno Decov is a leading Ghanaian company specializing in importing and distributing high-quality products from Italy. With a diverse range of offerings, the company has made its mark in the energy, automotive, and electrical industries.
               </p>
               <p className="text-steel">
-                Today, we pride ourselves on offering high-quality industrial products and services, 
-                including lubricants, power plants, generators, and batteries. Our expertise extends to 
-                importation, repairs, supply, maintenance, and installation services, making us a one-stop 
-                solution for all industrial needs.
+              At the core of Arcobeleno Decov’s success is its extensive selection of premium products. From cutting-edge power plants and advanced batteries to high-performance electrical components and superior engine lubricants, the company ensures that only the best solutions reach the market. This dedication to quality makes Arcobeleno Decov a trusted name in the industry.
               </p>
             </motion.div>
             <motion.div
