@@ -49,17 +49,17 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+234 803 123 4567", "+234 905 678 9012"]
+      details: ["+233 (0) 244 705 919"]
     },
     {
       icon: Mail,
       title: "Email",
-      details: ["info@arcobalenodecov.com", "support@arcobalenodecov.com"]
+      details: ["info@arcobalenodecov.com"]
     },
     {
       icon: MapPin,
       title: "Address",
-      details: ["123 Industrial Avenue", "Lagos, Nigeria"]
+      details: ["ARCOBALENO SERVICE", "PO Box: TN 1423", "Teshie Nungua, Greater Accra"]
     },
     {
       icon: Clock,
@@ -139,7 +139,7 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="+234 803 123 4567"
+                      placeholder="+233 (0) 244 705 919"
                     />
                   </div>
                   <div className="space-y-2">
@@ -219,7 +219,7 @@ const Contact = () => {
                 className="rounded-lg overflow-hidden shadow-md h-80 mt-8"
               >
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.1033934716826!2d3.3851969748979237!3d6.517949323859393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8cc1da145d8d%3A0x1a0eb283dee35685!2sVictoria%20Island%2C%20Lagos!5e0!3m2!1sen!2sng!4v1689273416347!5m2!1sen!2sng"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.4558351680807!2d-0.10189882414647592!3d5.6338657336836025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9bbdee369f39%3A0xa57b6908e5535b16!2sTeshie-Nungua%2C%20Ghana!5e0!3m2!1sen!2sus!4v1652321601235!5m2!1sen!2sus"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
