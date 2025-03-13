@@ -13,7 +13,7 @@ const Products = () => {
       id: 1,
       title: "Industrial Lubricants",
       description: "High-quality lubricants for industrial machinery and equipment",
-      image: "/lovable-uploads/1c0525f3-8b13-4604-a2d2-bc107da6a1b2.png",
+      image: "/uploads/gen_lub11.jpg",
       items: ["Hydraulic Oils", "Gear Oils", "Compressor Oils", "Turbine Oils"],
       details: "Our industrial lubricants are formulated to provide superior protection against wear, oxidation, and corrosion in demanding industrial environments. They offer excellent thermal stability, extended service life, and improved equipment reliability.",
       products: [
@@ -21,25 +21,25 @@ const Products = () => {
           name: "Premium Hydraulic Oil", 
           specs: "ISO VG 32, 46, 68", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/c7357c10-91c2-4883-b618-f5946e03a591.png"
+          image: "/uploads/lub21.jpg"
         },
         { 
           name: "Heavy-Duty Gear Oil", 
           specs: "ISO VG 150, 220, 320", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/db6eccf0-b054-4716-9026-e5bdec24c4b6.png"
+          image: "/uploads/lub21.jpg"
         },
         { 
           name: "Synthetic Compressor Oil", 
           specs: "ISO VG 32, 46, 68", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/f70338e4-fcce-4671-855a-c6e33c97f4bb.png"
+          image: "/uploads/lub123.jpg"
         },
         { 
           name: "High-Temperature Turbine Oil", 
           specs: "ISO VG 32, 46", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/6d305c97-bd29-455e-9274-b0957bc0771d.png"
+          image: "/uploads/lub12.jpg"
         }
       ]
     },
@@ -47,7 +47,7 @@ const Products = () => {
       id: 2,
       title: "Power Generation",
       description: "Reliable power generation solutions for various applications",
-      image: "/lovable-uploads/e23ac95e-9be3-42f7-a213-8bac9ed249d4.png",
+      image: "/uploads/power_gen.jpg",
       items: ["Generators", "Power Plants", "Alternators", "Control Systems"],
       details: "Our power generation solutions provide reliable, efficient, and cost-effective electricity for industrial, commercial, and residential applications. From small generators to complete power plants, we offer comprehensive solutions tailored to your specific needs.",
       products: [
@@ -55,25 +55,25 @@ const Products = () => {
           name: "Industrial Generator", 
           specs: "50-500 kW, Diesel/Gas", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/f5c9ca6f-a4ce-4fd2-9633-9899c08953fd.png"
+          image: "/uploads/power21.jpg"
         },
         { 
-          name: "Modular Power Plant", 
+          name: "Modular UPS", 
           specs: "1-10 MW capacity", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/196194c4-12c4-44f0-84e7-30f1ae7fe626.png"
+          image: "/uploads/ups1.jpg"
         },
         { 
-          name: "High-Efficiency Alternator", 
+          name: "High-Efficiency UPS", 
           specs: "100-1000 kVA", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/3b06df88-d5f8-43c9-a026-4d5c6cdaa9c4.png"
+          image: "/uploads/ups12.jpg"
         },
         { 
           name: "Advanced Control System", 
           specs: "Digital monitoring and control", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/7e69820c-92a7-4314-8f52-416eaa873b45.png"
+          image: "/uploads/power21.jpg"
         }
       ]
     },
@@ -81,7 +81,7 @@ const Products = () => {
       id: 3,
       title: "Industrial Batteries",
       description: "High-performance batteries for industrial applications",
-      image: "/lovable-uploads/2b1278f5-4805-413e-a72a-49a81d2d581f.png",
+      image: "/uploads/battery12.jpg",
       items: ["Deep Cycle Batteries", "Starting Batteries", "Stationary Batteries", "Traction Batteries"],
       details: "Our industrial batteries are designed to deliver reliable power for various applications in demanding environments. We offer a comprehensive range of batteries with superior cycle life, excellent charge acceptance, and minimal maintenance requirements.",
       products: [
@@ -89,25 +89,25 @@ const Products = () => {
           name: "Deep Cycle Battery", 
           specs: "12V, 100-250Ah", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/d481cf98-00b8-4f19-b5ae-9f01913228f8.png"
+          image: "/uploads/battery11.jpg"
         },
         { 
           name: "High-Cranking Starting Battery", 
           specs: "12V, 1000-1500 CCA", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/fa70a2e9-c4f7-4e91-b9a7-a80f8a977302.png"
+          image: "/uploads/battery13.jpg"
         },
         { 
           name: "Stationary VRLA Battery", 
           specs: "2V cells, 100-3000Ah", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/4408391e-4951-49d9-8aa2-0dc539720d0f.png"
+          image: "/uploads/battery12.jpg"
         },
         { 
           name: "Traction Battery Pack", 
           specs: "24V/48V/80V systems", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/d3e19a9b-69c6-4732-bbfd-74d1deb48d0c.png"
+          image: "/uploads/battery12.jpg"
         }
       ]
     },
@@ -115,7 +115,7 @@ const Products = () => {
       id: 4,
       title: "Pumps",
       description: "High-performance pumps for industrial and commercial applications",
-      image: "/lovable-uploads/b2a8e7a8-5e58-41c4-86da-ddd8a0bde62c.png",
+      image: "/uploads/pump123.jpg",
       items: ["Centrifugal Pumps", "Submersible Pumps", "Diaphragm Pumps", "Peristaltic Pumps"],
       details: "Our pumps are designed to handle a variety of industrial and commercial fluid transfer needs. With advanced engineering and durable materials, these pumps ensure efficiency, reliability, and long-lasting performance.",
       products: [
@@ -123,63 +123,63 @@ const Products = () => {
           name: "Centrifugal Water Pump", 
           specs: "High-flow rate, corrosion-resistant", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/db6eccf0-b054-4716-9026-e5bdec24c4b6.png"
+          image: "/uploads/pump123.jpg"
         },
         { 
           name: "Submersible Sewage Pump", 
           specs: "Heavy-duty, stainless steel construction", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/17dae553-e83d-474c-92ab-17bbb9a946ef.png"
+          image: "/uploads/pump.jpg"
         },
         { 
           name: "Air-Operated Diaphragm Pump", 
           specs: "Chemical-resistant, self-priming", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/2dd2c83f-7dc2-4835-bca1-6dbde75b0ed6.png"
+          image: "/uploads/pump123.jpg"
         },
         { 
           name: "Peristaltic Metering Pump", 
           specs: "Precise dosing, low maintenance", 
           price: "Contact for pricing",
-          image: "/lovable-uploads/54126bb1-5d1b-4c82-ac86-b2f442088a62.png"
+          image: "/uploads/pump.jpg"
         }
       ]
     },
-    {
-      id: 5,
-      title: "UPS Systems",
-      description: "Uninterruptible Power Supply systems for continuous power protection",
-      image: "/lovable-uploads/2b1278f5-4805-413e-a72a-49a81d2d581f.png",
-      icon: <BatteryCharging className="w-6 h-6 text-gold" />,
-      items: ["Online UPS", "Line-Interactive UPS", "Standby UPS", "Industrial UPS"],
-      details: "Our UPS systems provide reliable backup power and protection against power disturbances for critical equipment and processes. From small office setups to large industrial facilities, our UPS solutions ensure continuous operation during power outages and protect against surges, sags, and other power quality issues.",
-      products: [
-        { 
-          name: "Enterprise Online UPS", 
-          specs: "10-200 kVA, True double conversion", 
-          price: "Contact for pricing",
-          image: "/lovable-uploads/d481cf98-00b8-4f19-b5ae-9f01913228f8.png"
-        },
-        { 
-          name: "Industrial-Grade UPS", 
-          specs: "5-100 kVA, Ruggedized design", 
-          price: "Contact for pricing",
-          image: "/lovable-uploads/4408391e-4951-49d9-8aa2-0dc539720d0f.png"
-        },
-        { 
-          name: "Line-Interactive UPS", 
-          specs: "1-10 kVA, Automatic Voltage Regulation", 
-          price: "Contact for pricing",
-          image: "/lovable-uploads/fa70a2e9-c4f7-4e91-b9a7-a80f8a977302.png"
-        },
-        { 
-          name: "Modular UPS System", 
-          specs: "25-500 kVA, Scalable architecture", 
-          price: "Contact for pricing",
-          image: "/lovable-uploads/f5c9ca6f-a4ce-4fd2-9633-9899c08953fd.png"
-        }
-      ]
-    }
+    // {
+    //   id: 5,
+    //   title: "UPS Systems",
+    //   description: "Uninterruptible Power Supply systems for continuous power protection",
+    //   image: "/lovable-uploads/2b1278f5-4805-413e-a72a-49a81d2d581f.png",
+    //   icon: <BatteryCharging className="w-6 h-6 text-gold" />,
+    //   items: ["Online UPS", "Line-Interactive UPS", "Standby UPS", "Industrial UPS"],
+    //   details: "Our UPS systems provide reliable backup power and protection against power disturbances for critical equipment and processes. From small office setups to large industrial facilities, our UPS solutions ensure continuous operation during power outages and protect against surges, sags, and other power quality issues.",
+    //   // products: [
+    //   //   { 
+    //   //     name: "Enterprise Online UPS", 
+    //   //     specs: "10-200 kVA, True double conversion", 
+    //   //     price: "Contact for pricing",
+    //   //     image: "/lovable-uploads/d481cf98-00b8-4f19-b5ae-9f01913228f8.png"
+    //   //   },
+    //   //   { 
+    //   //     name: "Industrial-Grade UPS", 
+    //   //     specs: "5-100 kVA, Ruggedized design", 
+    //   //     price: "Contact for pricing",
+    //   //     image: "/lovable-uploads/4408391e-4951-49d9-8aa2-0dc539720d0f.png"
+    //   //   },
+    //   //   { 
+    //   //     name: "Line-Interactive UPS", 
+    //   //     specs: "1-10 kVA, Automatic Voltage Regulation", 
+    //   //     price: "Contact for pricing",
+    //   //     image: "/lovable-uploads/fa70a2e9-c4f7-4e91-b9a7-a80f8a977302.png"
+    //   //   },
+    //   //   { 
+    //   //     name: "Modular UPS System", 
+    //   //     specs: "25-500 kVA, Scalable architecture", 
+    //   //     price: "Contact for pricing",
+    //   //     image: "/lovable-uploads/f5c9ca6f-a4ce-4fd2-9633-9899c08953fd.png"
+    //   //   }
+    //   // ]
+    // }
   ];
 
   const toggleDetails = (id: number) => {
