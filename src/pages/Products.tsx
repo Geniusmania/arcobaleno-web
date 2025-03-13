@@ -1,7 +1,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Battery, BatteryCharging, Zap } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -112,40 +112,74 @@ const Products = () => {
       ]
     },
     {
-      "id": 4,
-      "title": "Pumps",
-      "description": "High-performance pumps for industrial and commercial applications",
-      "image": "/lovable-uploads/b2a8e7a8-5e58-41c4-86da-ddd8a0bde62c.png",
-      "items": ["Centrifugal Pumps", "Submersible Pumps", "Diaphragm Pumps", "Peristaltic Pumps"],
-      "details": "Our pumps are designed to handle a variety of industrial and commercial fluid transfer needs. With advanced engineering and durable materials, these pumps ensure efficiency, reliability, and long-lasting performance.",
-      "products": [
+      id: 4,
+      title: "Pumps",
+      description: "High-performance pumps for industrial and commercial applications",
+      image: "/lovable-uploads/b2a8e7a8-5e58-41c4-86da-ddd8a0bde62c.png",
+      items: ["Centrifugal Pumps", "Submersible Pumps", "Diaphragm Pumps", "Peristaltic Pumps"],
+      details: "Our pumps are designed to handle a variety of industrial and commercial fluid transfer needs. With advanced engineering and durable materials, these pumps ensure efficiency, reliability, and long-lasting performance.",
+      products: [
         { 
-          "name": "Centrifugal Water Pump", 
-          "specs": "High-flow rate, corrosion-resistant", 
-          "price": "Contact for pricing",
-          "image": "/lovable-uploads/db6eccf0-b054-4716-9026-e5bdec24c4b6.png"
+          name: "Centrifugal Water Pump", 
+          specs: "High-flow rate, corrosion-resistant", 
+          price: "Contact for pricing",
+          image: "/lovable-uploads/db6eccf0-b054-4716-9026-e5bdec24c4b6.png"
         },
         { 
-          "name": "Submersible Sewage Pump", 
-          "specs": "Heavy-duty, stainless steel construction", 
-          "price": "Contact for pricing",
-          "image": "/lovable-uploads/17dae553-e83d-474c-92ab-17bbb9a946ef.png"
+          name: "Submersible Sewage Pump", 
+          specs: "Heavy-duty, stainless steel construction", 
+          price: "Contact for pricing",
+          image: "/lovable-uploads/17dae553-e83d-474c-92ab-17bbb9a946ef.png"
         },
         { 
-          "name": "Air-Operated Diaphragm Pump", 
-          "specs": "Chemical-resistant, self-priming", 
-          "price": "Contact for pricing",
-          "image": "/lovable-uploads/2dd2c83f-7dc2-4835-bca1-6dbde75b0ed6.png"
+          name: "Air-Operated Diaphragm Pump", 
+          specs: "Chemical-resistant, self-priming", 
+          price: "Contact for pricing",
+          image: "/lovable-uploads/2dd2c83f-7dc2-4835-bca1-6dbde75b0ed6.png"
         },
         { 
-          "name": "Peristaltic Metering Pump", 
-          "specs": "Precise dosing, low maintenance", 
-          "price": "Contact for pricing",
-          "image": "/lovable-uploads/54126bb1-5d1b-4c82-ac86-b2f442088a62.png"
+          name: "Peristaltic Metering Pump", 
+          specs: "Precise dosing, low maintenance", 
+          price: "Contact for pricing",
+          image: "/lovable-uploads/54126bb1-5d1b-4c82-ac86-b2f442088a62.png"
+        }
+      ]
+    },
+    {
+      id: 5,
+      title: "UPS Systems",
+      description: "Uninterruptible Power Supply systems for continuous power protection",
+      image: "/lovable-uploads/2b1278f5-4805-413e-a72a-49a81d2d581f.png",
+      icon: <BatteryCharging className="w-6 h-6 text-gold" />,
+      items: ["Online UPS", "Line-Interactive UPS", "Standby UPS", "Industrial UPS"],
+      details: "Our UPS systems provide reliable backup power and protection against power disturbances for critical equipment and processes. From small office setups to large industrial facilities, our UPS solutions ensure continuous operation during power outages and protect against surges, sags, and other power quality issues.",
+      products: [
+        { 
+          name: "Enterprise Online UPS", 
+          specs: "10-200 kVA, True double conversion", 
+          price: "Contact for pricing",
+          image: "/lovable-uploads/d481cf98-00b8-4f19-b5ae-9f01913228f8.png"
+        },
+        { 
+          name: "Industrial-Grade UPS", 
+          specs: "5-100 kVA, Ruggedized design", 
+          price: "Contact for pricing",
+          image: "/lovable-uploads/4408391e-4951-49d9-8aa2-0dc539720d0f.png"
+        },
+        { 
+          name: "Line-Interactive UPS", 
+          specs: "1-10 kVA, Automatic Voltage Regulation", 
+          price: "Contact for pricing",
+          image: "/lovable-uploads/fa70a2e9-c4f7-4e91-b9a7-a80f8a977302.png"
+        },
+        { 
+          name: "Modular UPS System", 
+          specs: "25-500 kVA, Scalable architecture", 
+          price: "Contact for pricing",
+          image: "/lovable-uploads/f5c9ca6f-a4ce-4fd2-9633-9899c08953fd.png"
         }
       ]
     }
-    
   ];
 
   const toggleDetails = (id: number) => {
