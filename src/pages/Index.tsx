@@ -1,5 +1,4 @@
-
-import { ArrowRight, Battery, Power, Wrench, Truck } from "lucide-react";
+import { ArrowRight, Battery, Power, Wrench, Truck, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -97,6 +96,31 @@ const Index = () => {
     },
   ];
 
+  // Testimonials data
+  const testimonials = [
+    {
+      name: "David Chen",
+      company: "Manufacturing Solutions Inc.",
+      quote: "The industrial batteries we purchased have significantly improved our operational efficiency. Their longevity and reliability have been impressive.",
+      rating: 5,
+      image: "/uploads/battery1.jpg"
+    },
+    {
+      name: "Sarah Johnson",
+      company: "Global Logistics Partners",
+      quote: "Their power generation solutions helped us maintain continuous operations during critical periods. The support team has been exceptional throughout.",
+      rating: 5,
+      image: "/uploads/power21.jpg"
+    },
+    {
+      name: "Michael Rodriguez",
+      company: "Precision Engineering",
+      quote: "The maintenance services provided have extended the life of our equipment considerably. Highly recommended for any industrial operation.",
+      rating: 4,
+      image: "/uploads/gen_lub11.jpg"
+    }
+  ];
+
   return (
     <div className="w-full">
       {/* Hero Section with Carousel */}
@@ -113,7 +137,6 @@ const Index = () => {
             {heroSlides.map((slide, index) => (
               <CarouselItem key={index} className="h-full w-full">
                 <div className="relative h-full w-full">
-                  {/* Background Image - Updated to fill the entire height */}
                   <div 
                     className="absolute inset-0 bg-cover bg-center h-full"
                     style={{ 
@@ -124,10 +147,8 @@ const Index = () => {
                       width: '100%'
                     }}
                   />
-                  {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-r from-navy/90 to-navy/70 h-full" />
                   
-                  {/* Content */}
                   <div className="relative h-full flex items-center">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                       <motion.div 
@@ -167,7 +188,6 @@ const Index = () => {
             ))}
           </CarouselContent>
           
-          {/* Navigation Controls */}
           <div className="absolute z-10 bottom-10 left-0 right-0 flex justify-center gap-2">
             {heroSlides.map((_, index) => (
               <button
@@ -226,6 +246,68 @@ const Index = () => {
                 </Button>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-navy mb-4">
+              What Our Clients Say
+            </h2>
+            <p className="text-lg text-steel max-w-2xl mx-auto">
+              Don't just take our word for it - hear from our satisfied customers about their experiences.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white p-6 rounded-lg shadow-md relative card-hover"
+              >
+                <div className="absolute -top-6 left-6 w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md">
+                  <img 
+                    src={testimonial.image} 
+                    alt={testimonial.name} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                
+                <div className="flex justify-end mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star 
+                      key={i} 
+                      className={`w-4 h-4 ${i < testimonial.rating ? 'text-gold fill-gold' : 'text-gray-300'}`}
+                    />
+                  ))}
+                </div>
+                
+                <p className="text-steel italic mb-6">"{testimonial.quote}"</p>
+                
+                <div>
+                  <p className="font-semibold text-navy">{testimonial.name}</p>
+                  <p className="text-sm text-steel">{testimonial.company}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Button
+              className="bg-navy hover:bg-navy/90 text-white group"
+              asChild
+            >
+              <Link to="/about">
+                See More Success Stories
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
