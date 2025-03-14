@@ -3,8 +3,73 @@ import { ArrowRight, Battery, Power, Wrench, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 const Index = () => {
+  const [api, setApi] = useState<any>();
+  const [current, setCurrent] = useState(0);
+  
+  // Hero slider data
+  const heroSlides = [
+    {
+      image: "/uploads/battery11.jpg",
+      headline: "Industrial Batteries for Every Need",
+      description: "High-performance batteries designed for demanding industrial applications"
+    },
+    {
+      image: "/uploads/power_gen.jpg",
+      headline: "Powerful Generation Solutions",
+      description: "Reliable power systems to keep your business running smoothly"
+    },
+    {
+      image: "/uploads/ups11.jpg",
+      headline: "Uninterrupted Power Supply",
+      description: "Protect your critical systems with our advanced UPS technology"
+    },
+    {
+      image: "/uploads/gen_lub1.jpg",
+      headline: "Premium Maintenance Services",
+      description: "Professional maintenance keeping your equipment at peak performance"
+    }
+  ];
+  
+  // Autoplay functionality
+  useEffect(() => {
+    if (!api) return;
+    
+    // Set up the interval for autoplay
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 5000);
+    
+    // Cleanup on unmount
+    return () => clearInterval(interval);
+  }, [api]);
+  
+  // Update current slide index when the carousel changes
+  useEffect(() => {
+    if (!api) return;
+    
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+    
+    api.on("select", onSelect);
+    
+    // Cleanup
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
   const features = [
     {
       icon: Battery,
@@ -34,52 +99,86 @@ const Index = () => {
 
   return (
     <div className="w-full">
-      {/* Hero Section */}
-      <section className="relative h-[90vh] hero-pattern overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-navy/90 to-navy/70" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <div className="text-white max-w-3xl">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
-            >
-              Powering Industry with Innovation
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-xl mb-8 text-gray-200"
-            >
-              Leading provider of industrial solutions, from power generation to
-              maintenance services. Experience excellence in every solution.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-wrap gap-4"
-            >
-              <Button
-                size="lg"
-                className="bg-gold hover:bg-gold/90 text-navy font-semibold"
-                asChild
-              >
-                <Link to="/products">Explore Solutions</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10"
-                asChild
-              >
-                <Link to="/contact">Contact Us</Link>
-              </Button>
-            </motion.div>
+      {/* Hero Section with Carousel */}
+      <section className="relative h-[90vh] overflow-hidden">
+        <Carousel 
+          setApi={setApi} 
+          className="h-full w-full"
+          opts={{
+            loop: true,
+            align: "start",
+          }}
+        >
+          <CarouselContent className="h-full">
+            {heroSlides.map((slide, index) => (
+              <CarouselItem key={index} className="h-full w-full">
+                <div className="relative h-full w-full">
+                  {/* Background Image */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center" 
+                    style={{ backgroundImage: `url(${slide.image})` }}
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-navy/90 to-navy/70" />
+                  
+                  {/* Content */}
+                  <div className="relative h-full flex items-center">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="text-white max-w-3xl"
+                      >
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+                          {slide.headline}
+                        </h1>
+                        <p className="text-lg sm:text-xl mb-8 text-gray-200">
+                          {slide.description}
+                        </p>
+                        <div className="flex flex-wrap gap-4">
+                          <Button
+                            size="lg"
+                            className="bg-gold hover:bg-gold/90 text-navy font-semibold"
+                            asChild
+                          >
+                            <Link to="/products">Explore Solutions</Link>
+                          </Button>
+                          <Button
+                            size="lg"
+                            variant="outline"
+                            className="border-white text-white hover:bg-white/10"
+                            asChild
+                          >
+                            <Link to="/contact">Contact Us</Link>
+                          </Button>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          
+          {/* Navigation Controls */}
+          <div className="absolute z-10 bottom-10 left-0 right-0 flex justify-center gap-2">
+            {heroSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => api?.scrollTo(index)}
+                className={cn(
+                  "w-3 h-3 rounded-full transition-all duration-300",
+                  current === index ? "bg-gold w-8" : "bg-white/50 hover:bg-white"
+                )}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
           </div>
-        </div>
+          
+          <CarouselPrevious className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white border-none" />
+          <CarouselNext className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white border-none" />
+        </Carousel>
       </section>
 
       {/* Features Section */}
