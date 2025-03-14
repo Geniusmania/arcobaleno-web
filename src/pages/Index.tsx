@@ -113,13 +113,19 @@ const Index = () => {
             {heroSlides.map((slide, index) => (
               <CarouselItem key={index} className="h-full w-full">
                 <div className="relative h-full w-full">
-                  {/* Background Image */}
+                  {/* Background Image - Updated to fill the entire height */}
                   <div 
-                    className="absolute inset-0 bg-cover bg-center" 
-                    style={{ backgroundImage: `url(${slide.image})` }}
+                    className="absolute inset-0 bg-cover bg-center h-full"
+                    style={{ 
+                      backgroundImage: `url(${slide.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      height: '100%',
+                      width: '100%'
+                    }}
                   />
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-navy/90 to-navy/70" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-navy/90 to-navy/70 h-full" />
                   
                   {/* Content */}
                   <div className="relative h-full flex items-center">
