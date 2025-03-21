@@ -1,9 +1,10 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Battery, BatteryCharging, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Products = () => {
   const [expandedCategory, setExpandedCategory] = useState<number | null>(null);
@@ -229,24 +230,21 @@ const Products = () => {
                 viewport={{ once: true }}
                 className="bg-white rounded-lg overflow-hidden shadow-md card-hover"
               >
-                <div className="h-64 overflow-hidden">
+                {/* Enhanced image display */}
+                <div className="h-72 overflow-hidden relative">
                   <img 
                     src={category.image} 
                     alt={category.title} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    style={{ filter: 'contrast(1.05) brightness(1.05)' }}
                   />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-navy mb-2">{category.title}</h3>
-                  <p className="text-steel mb-4">{category.description}</p>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-navy mb-2">Featured Products:</h4>
-                    <ul className="list-disc pl-5 text-steel">
-                      {category.items.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
+                  <div className="absolute bottom-0 left-0 right-0 bg-navy/40 backdrop-blur-sm py-2 px-4">
+                    <h3 className="text-xl font-semibold text-white">{category.title}</h3>
                   </div>
+                </div>
+                
+                <div className="p-4">
+                  <p className="text-steel mb-4 text-sm">{category.description}</p>
                   
                   {expandedCategory === category.id && (
                     <motion.div 
@@ -256,24 +254,31 @@ const Products = () => {
                       transition={{ duration: 0.3 }}
                       className="mt-4 mb-4 pt-4 border-t"
                     >
-                      <p className="text-steel mb-4">{category.details}</p>
-                      <h4 className="font-semibold text-navy mb-2">Available Products:</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <p className="text-steel mb-4 text-sm">{category.details}</p>
+                      <h4 className="font-semibold text-navy mb-3 text-sm">Available Products:</h4>
+                      
+                      {/* Enhanced product grid with larger images */}
+                      <div className="grid grid-cols-2 gap-3">
                         {category.products.map((product, idx) => (
-                          <div key={idx} className="p-3 bg-gray-50 rounded-md flex flex-col">
-                            <div className="h-40 mb-3 overflow-hidden rounded-md">
-                              <img 
-                                src={product.image} 
-                                alt={product.name}
-                                className="w-full h-full object-contain" 
-                              />
+                          <div key={idx} className="overflow-hidden rounded-md flex flex-col border border-gray-200">
+                            <div className="h-48 overflow-hidden">
+                              <AspectRatio ratio={4/3} className="bg-slate-50">
+                                <img 
+                                  src={product.image} 
+                                  alt={product.name}
+                                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" 
+                                  style={{ filter: 'contrast(1.05) brightness(1.05)' }}
+                                />
+                              </AspectRatio>
                             </div>
-                            <h5 className="font-medium text-navy">{product.name}</h5>
-                            <p className="text-sm text-steel">Specifications: {product.specs}</p>
-                            <p className="text-sm font-medium text-navy mt-1">{product.price}</p>
+                            <div className="p-2 bg-white/90">
+                              <h5 className="font-medium text-navy text-sm truncate">{product.name}</h5>
+                              <p className="text-xs text-steel truncate">Specs: {product.specs}</p>
+                            </div>
                           </div>
                         ))}
                       </div>
+                      
                       <div className="mt-4 flex justify-end">
                         <Button 
                           className="bg-gold hover:bg-gold/90 text-navy font-semibold"
@@ -290,7 +295,7 @@ const Products = () => {
                     className="text-navy hover:text-gold transition-colors group flex items-center"
                     onClick={() => toggleDetails(category.id)}
                   >
-                    {expandedCategory === category.id ? "Show Less" : "View Details"}{" "}
+                    {expandedCategory === category.id ? "Show Less" : "View Products"}{" "}
                     <ArrowRight className={`ml-2 w-4 h-4 transition-transform ${
                       expandedCategory === category.id ? "rotate-90" : "group-hover:translate-x-1"
                     }`} />
