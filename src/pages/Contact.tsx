@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -32,31 +31,48 @@ const Contact = () => {
     setError(null);
     
     try {
-      const response = await fetch("https://api.resend.com/emails", {
-        method: "POST",
+      const emailData = {
+        from: "Arcobaleno Contact Form <onboarding@resend.dev>",
+        to: ["arcobalenodecov0@gmail.com"],
+        subject: `Contact Form: ${formData.subject}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${formData.name}</p>
+          <p><strong>Email:</strong> ${formData.email}</p>
+          <p><strong>Phone:</strong> ${formData.phone || "Not provided"}</p>
+          <p><strong>Subject:</strong> ${formData.subject}</p>
+          <p><strong>Message:</strong><br>${formData.message.replace(/\n/g, "<br>")}</p>
+        `,
+      };
+
+      const serviceId = "service_jjykmkg";
+      const templateId = "template_3kkd23v";
+      const userId = "K1cNVY6Wz93Hm5rGZ";
+      
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || "Not provided",
+        subject: formData.subject,
+        message: formData.message,
+        to_email: "arcobalenodecov0@gmail.com"
+      };
+      
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer re_gHtKkZGQ_4X2V62VGKzVZH4kHGRGUQSCC`,
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: "Arcobaleno Contact Form <onboarding@resend.dev>",
-          to: ["arcobalenodecov0@gmail.com"],
-          subject: `Contact Form: ${formData.subject}`,
-          html: `
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> ${formData.name}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
-            <p><strong>Phone:</strong> ${formData.phone || "Not provided"}</p>
-            <p><strong>Subject:</strong> ${formData.subject}</p>
-            <p><strong>Message:</strong><br>${formData.message.replace(/\n/g, "<br>")}</p>
-          `,
-        }),
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: userId,
+          template_params: templateParams
+        })
       });
-
-      const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || "Failed to send email");
+        throw new Error("Failed to send email. Please try again later.");
       }
 
       toast({
