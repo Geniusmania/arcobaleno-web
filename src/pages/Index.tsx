@@ -1,3 +1,4 @@
+
 import { ArrowRight, Battery, Power, Wrench, Truck, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -144,10 +145,12 @@ const Index = () => {
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       height: '100%',
-                      width: '100%'
+                      width: '100%',
+                      filter: 'contrast(1.1) brightness(1.05)'
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-navy/90 to-navy/70 h-full" />
+                  {/* Reduced opacity overlay to make images more visible */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-navy/40 to-navy/30 h-full" />
                   
                   <div className="relative h-full flex items-center">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -157,28 +160,31 @@ const Index = () => {
                         transition={{ duration: 0.5 }}
                         className="text-white max-w-3xl"
                       >
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                          {slide.headline}
-                        </h1>
-                        <p className="text-lg sm:text-xl mb-8 text-gray-200">
-                          {slide.description}
-                        </p>
-                        <div className="flex flex-wrap gap-4">
-                          <Button
-                            size="lg"
-                            className="bg-gold hover:bg-gold/90 text-navy font-semibold"
-                            asChild
-                          >
-                            <Link to="/products">Explore Solutions</Link>
-                          </Button>
-                          <Button
-                            size="lg"
-                            variant="outline"
-                            className="border-white text-white hover:bg-white/10"
-                            asChild
-                          >
-                            <Link to="/contact">Contact Us</Link>
-                          </Button>
+                        {/* Semi-transparent background for text to ensure readability without dominating */}
+                        <div className="bg-navy/40 backdrop-blur-sm p-6 rounded-lg inline-block">
+                          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-white/90">
+                            {slide.headline}
+                          </h1>
+                          <p className="text-base sm:text-lg mb-6 text-white/80">
+                            {slide.description}
+                          </p>
+                          <div className="flex flex-wrap gap-4">
+                            <Button
+                              size="lg"
+                              className="bg-gold hover:bg-gold/90 text-navy font-semibold"
+                              asChild
+                            >
+                              <Link to="/products">Explore Solutions</Link>
+                            </Button>
+                            <Button
+                              size="lg"
+                              variant="outline"
+                              className="border-white/70 text-white/90 hover:bg-white/10"
+                              asChild
+                            >
+                              <Link to="/contact">Contact Us</Link>
+                            </Button>
+                          </div>
                         </div>
                       </motion.div>
                     </div>
