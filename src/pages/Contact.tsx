@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -17,24 +18,53 @@ const Contact = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    if (error) setError(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer re_gHtKkZGQ_4X2V62VGKzVZH4kHGRGUQSCC`,
+        },
+        body: JSON.stringify({
+          from: "Arcobaleno Contact Form <onboarding@resend.dev>",
+          to: ["arcobalenodecov0@gmail.com"],
+          subject: `Contact Form: ${formData.subject}`,
+          html: `
+            <h2>New Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Phone:</strong> ${formData.phone || "Not provided"}</p>
+            <p><strong>Subject:</strong> ${formData.subject}</p>
+            <p><strong>Message:</strong><br>${formData.message.replace(/\n/g, "<br>")}</p>
+          `,
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to send email");
+      }
+
       toast({
         title: "Message Sent",
         description: "We've received your message and will get back to you soon.",
         variant: "default",
       });
+      
       setFormData({
         name: "",
         email: "",
@@ -42,7 +72,17 @@ const Contact = () => {
         subject: "",
         message: ""
       });
-    }, 1500);
+    } catch (err) {
+      console.error("Email sending error:", err);
+      setError(err instanceof Error ? err.message : "Failed to send message. Please try again later.");
+      toast({
+        title: "Error",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -99,6 +139,13 @@ const Contact = () => {
               className="bg-white p-8 rounded-lg shadow-md"
             >
               <h2 className="text-2xl font-bold text-navy mb-6">Send Us a Message</h2>
+              
+              {error && (
+                <Alert variant="destructive" className="mb-4">
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+              
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
