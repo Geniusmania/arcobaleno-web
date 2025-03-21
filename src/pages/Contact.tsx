@@ -32,22 +32,48 @@ const Contact = () => {
     
     try {
       const emailData = {
-        from: "Arcobaleno Contact Form <onboarding@resend.dev>",
+        from: "Arcobaleno Contact Form <onboarding@reasend.dev>",
         to: ["arcobalenodecov0@gmail.com"],
         subject: `Contact Form: ${formData.subject}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${formData.name}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Phone:</strong> ${formData.phone || "Not provided"}</p>
-          <p><strong>Subject:</strong> ${formData.subject}</p>
-          <p><strong>Message:</strong><br>${formData.message.replace(/\n/g, "<br>")}</p>
-        `,
+        html: `<div style="font-family: system-ui, sans-serif, Arial; font-size: 14px; color: #333">
+          <div>
+            <strong>New Contact Form Submission</strong>
+          </div>
+          <div>A message from <strong>${formData.name}</strong> has been received. Kindly respond at your earliest convenience.</div>
+          <div style="margin-top: 20px; padding: 15px 0; border-width: 1px 0; border-style: dashed; border-color: lightgrey;">
+            <table role="presentation">
+              <tr>
+                <td style="vertical-align: top">
+                  <div style="padding: 6px 10px; margin: 0 10px; background-color: aliceblue; border-radius: 5px; font-size: 26px;" role="img">
+                    &#x1F464;
+                  </div>
+                </td>
+                <td style="vertical-align: top">
+                  <div style="color: #2c3e50; font-size: 16px">
+                    <strong>${formData.name}</strong>
+                  </div>
+                  <div style="color: #555; font-size: 14px">
+                    📧 <a href="mailto:${formData.email}" style="color: #007bff">${formData.email}</a>
+                  </div>
+                  <div style="color: #555; font-size: 14px">
+                    📞 ${formData.phone || "Not provided"}
+                  </div>
+                  <div style="color: #555; font-size: 14px">
+                    📅 <span>${new Date().toLocaleString()}</span>
+                  </div>
+                  <p style="font-size: 16px; margin-top: 10px; line-height: 1.5">
+                    ${formData.message.replace(/\n/g, "<br>")}
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>`,
       };
-
-      const serviceId = "service_jjykmkg";
-      const templateId = "template_3kkd23v";
-      const userId = "K1cNVY6Wz93Hm5rGZ";
+      
+      const serviceId = "service_akf7f36";
+      const templateId = "template_pwylabm";
+      const userId = "CaADsfOqJwvXqthUD";
       
       const templateParams = {
         from_name: formData.name,
