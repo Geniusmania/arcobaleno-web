@@ -5,9 +5,12 @@ import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Card, CardContent } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const Products = () => {
-  const [expandedCategory, setExpandedCategory] = useState<number | null>(null);
+  // Change from single selection to array of selected categories
+  const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
 
   const productCategories = [
     {
@@ -183,11 +186,21 @@ const Products = () => {
     // }
   ];
 
+  // Modified to toggle multiple categories
   const toggleDetails = (id: number) => {
-    if (expandedCategory === id) {
-      setExpandedCategory(null);
+    if (expandedCategories.includes(id)) {
+      setExpandedCategories(expandedCategories.filter(catId => catId !== id));
     } else {
-      setExpandedCategory(id);
+      setExpandedCategories([...expandedCategories, id]);
+    }
+  };
+
+  // New function to toggle all categories at once
+  const toggleAllDetails = () => {
+    if (expandedCategories.length === productCategories.length) {
+      setExpandedCategories([]);
+    } else {
+      setExpandedCategories(productCategories.map(cat => cat.id));
     }
   };
 
@@ -218,6 +231,15 @@ const Products = () => {
             <p className="text-lg text-steel max-w-3xl mx-auto">
               We offer a wide range of industrial products to meet your specific needs
             </p>
+            
+            {/* Added toggle all button */}
+            <Button 
+              onClick={toggleAllDetails} 
+              variant="outline" 
+              className="mt-4 border-gold text-navy hover:bg-gold/10"
+            >
+              {expandedCategories.length === productCategories.length ? "Collapse All Categories" : "Expand All Categories"}
+            </Button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -236,9 +258,9 @@ const Products = () => {
                     src={category.image} 
                     alt={category.title} 
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    style={{ filter: 'contrast(1.05) brightness(1.05)' }}
+                    style={{ filter: 'contrast(1.1) brightness(1.1)' }}
                   />
-                  <div className="absolute bottom-0 left-0 right-0 bg-navy/40 backdrop-blur-sm py-2 px-4">
+                  <div className="absolute bottom-0 left-0 right-0 bg-navy/30 backdrop-blur-sm py-2 px-4">
                     <h3 className="text-xl font-semibold text-white">{category.title}</h3>
                   </div>
                 </div>
@@ -246,7 +268,8 @@ const Products = () => {
                 <div className="p-4">
                   <p className="text-steel mb-4 text-sm">{category.description}</p>
                   
-                  {expandedCategory === category.id && (
+                  {/* Show content if category is in expanded array */}
+                  {expandedCategories.includes(category.id) && (
                     <motion.div 
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
@@ -267,7 +290,7 @@ const Products = () => {
                                   src={product.image} 
                                   alt={product.name}
                                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" 
-                                  style={{ filter: 'contrast(1.05) brightness(1.05)' }}
+                                  style={{ filter: 'contrast(1.1) brightness(1.1)' }}
                                 />
                               </AspectRatio>
                             </div>
@@ -295,9 +318,9 @@ const Products = () => {
                     className="text-navy hover:text-gold transition-colors group flex items-center"
                     onClick={() => toggleDetails(category.id)}
                   >
-                    {expandedCategory === category.id ? "Show Less" : "View Products"}{" "}
+                    {expandedCategories.includes(category.id) ? "Show Less" : "View Products"}{" "}
                     <ArrowRight className={`ml-2 w-4 h-4 transition-transform ${
-                      expandedCategory === category.id ? "rotate-90" : "group-hover:translate-x-1"
+                      expandedCategories.includes(category.id) ? "rotate-90" : "group-hover:translate-x-1"
                     }`} />
                   </Button>
                 </div>
