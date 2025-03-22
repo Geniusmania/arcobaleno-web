@@ -1,5 +1,5 @@
 
-import { ArrowRight, Battery, Power, Wrench, Truck, Star } from "lucide-react";
+import { ArrowRight, Battery, Power, Wrench, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 const Index = () => {
   const [api, setApi] = useState<any>();
   const [current, setCurrent] = useState(0);
+  const [productApi, setProductApi] = useState<any>();
   
   // Hero slider data
   const heroSlides = [
@@ -41,7 +42,51 @@ const Index = () => {
     }
   ];
   
-  // Autoplay functionality
+  // Product showcase images
+  const productShowcase = [
+    {
+      image: "/uploads/battery1.jpg",
+      title: "Industrial Batteries",
+      category: "Power Solutions"
+    },
+    {
+      image: "/uploads/ups1.jpg",
+      title: "UPS Systems",
+      category: "Backup Power"
+    },
+    {
+      image: "/uploads/power21.jpg",
+      title: "Power Generators",
+      category: "Power Generation"
+    },
+    {
+      image: "/uploads/ups12.jpg",
+      title: "Advanced UPS Technology",
+      category: "Backup Power"
+    },
+    {
+      image: "/uploads/battery12.jpg",
+      title: "Heavy-Duty Batteries",
+      category: "Power Solutions"
+    },
+    {
+      image: "/uploads/gen_lub11.jpg",
+      title: "Maintenance Equipment",
+      category: "Service Solutions"
+    },
+    {
+      image: "/uploads/ups2.jpg",
+      title: "Enterprise UPS",
+      category: "Backup Power"
+    },
+    {
+      image: "/uploads/lub21.jpg",
+      title: "Lubrication Systems",
+      category: "Maintenance"
+    }
+  ];
+  
+  // Autoplay functionality for hero carousel
   useEffect(() => {
     if (!api) return;
     
@@ -95,31 +140,6 @@ const Index = () => {
       description: "Efficient logistics and supply chain solutions",
       link: "/services",
     },
-  ];
-
-  // Testimonials data
-  const testimonials = [
-    {
-      name: "David Chen",
-      company: "Manufacturing Solutions Inc.",
-      quote: "The industrial batteries we purchased have significantly improved our operational efficiency. Their longevity and reliability have been impressive.",
-      rating: 5,
-      image: "/uploads/battery1.jpg"
-    },
-    {
-      name: "Sarah Johnson",
-      company: "Global Logistics Partners",
-      quote: "Their power generation solutions helped us maintain continuous operations during critical periods. The support team has been exceptional throughout.",
-      rating: 5,
-      image: "/uploads/power21.jpg"
-    },
-    {
-      name: "Michael Rodriguez",
-      company: "Precision Engineering",
-      quote: "The maintenance services provided have extended the life of our equipment considerably. Highly recommended for any industrial operation.",
-      rating: 4,
-      image: "/uploads/gen_lub11.jpg"
-    }
   ];
 
   return (
@@ -256,49 +276,81 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Product Showcase Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-navy mb-4">
-              What Our Clients Say
+              Our Product Showcase
             </h2>
             <p className="text-lg text-steel max-w-2xl mx-auto">
-              Don't just take our word for it - hear from our satisfied customers about their experiences.
+              Explore our range of high-quality industrial products designed for performance and reliability.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+          {/* Products Carousel for mobile */}
+          <div className="block md:hidden mb-8">
+            <Carousel
+              setApi={setProductApi}
+              className="w-full"
+              opts={{
+                loop: true,
+                align: "start",
+              }}
+            >
+              <CarouselContent>
+                {productShowcase.map((product, index) => (
+                  <CarouselItem key={index} className="basis-full sm:basis-1/2">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                      className="h-full rounded-lg overflow-hidden shadow-md card-hover"
+                    >
+                      <div className="relative h-64 overflow-hidden">
+                        <img 
+                          src={product.image} 
+                          alt={product.title} 
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-navy/70 to-transparent flex items-end">
+                          <div className="p-4 text-white">
+                            <h3 className="text-xl font-semibold">{product.title}</h3>
+                            <p className="text-sm text-white/80">{product.category}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2" />
+              <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2" />
+            </Carousel>
+          </div>
+
+          {/* Products Grid for tablet and desktop */}
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {productShowcase.map((product, index) => (
               <motion.div
-                key={testimonial.name}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white p-6 rounded-lg shadow-md relative card-hover"
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="rounded-lg overflow-hidden shadow-md card-hover"
               >
-                <div className="absolute -top-6 left-6 w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md">
+                <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name} 
-                    className="w-full h-full object-cover"
+                    src={product.image} 
+                    alt={product.title} 
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   />
-                </div>
-                
-                <div className="flex justify-end mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star 
-                      key={i} 
-                      className={`w-4 h-4 ${i < testimonial.rating ? 'text-gold fill-gold' : 'text-gray-300'}`}
-                    />
-                  ))}
-                </div>
-                
-                <p className="text-steel italic mb-6">"{testimonial.quote}"</p>
-                
-                <div>
-                  <p className="font-semibold text-navy">{testimonial.name}</p>
-                  <p className="text-sm text-steel">{testimonial.company}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/70 to-transparent flex items-end">
+                    <div className="p-4 text-white">
+                      <h3 className="text-xl font-semibold">{product.title}</h3>
+                      <p className="text-sm text-white/80">{product.category}</p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -309,8 +361,8 @@ const Index = () => {
               className="bg-navy hover:bg-navy/90 text-white group"
               asChild
             >
-              <Link to="/about">
-                See More Success Stories
+              <Link to="/products">
+                View All Products
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
