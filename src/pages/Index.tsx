@@ -1,5 +1,6 @@
 
 import { ArrowRight, Battery, Power, Wrench, Truck } from "lucide-react";
+import Footer from "@/components/ui/footer";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -369,6 +370,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
